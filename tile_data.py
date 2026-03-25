@@ -21,6 +21,7 @@ ANIMAL_EMOJI = {
     None: "·",
 }
 
+
 def get_data_path() -> Path:
     for path in CANDIDATE_PATHS:
         if path.exists():
@@ -32,16 +33,19 @@ def get_data_path() -> Path:
         "GitHub の repo に data/tiles.json が入っているか確認してください。"
     )
 
+
 def load_tiles():
     data_path = get_data_path()
     with open(data_path, "r", encoding="utf-8") as f:
         return json.load(f)
+
 
 def build_deck(seed=None):
     deck = deepcopy(load_tiles())
     rng = random.Random(seed)
     rng.shuffle(deck)
     return deck
+
 
 def rotate_tile(tile, steps):
     steps = steps % 4
@@ -53,8 +57,10 @@ def rotate_tile(tile, steps):
         rotated["edges"] = tile["edges"][:]
     return rotated
 
+
 def animal_to_emoji(animal):
     return ANIMAL_EMOJI.get(animal, "·")
+
 
 def tile_label(tile):
     animal = tile.get("animal")
