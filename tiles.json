@@ -1,0 +1,1094 @@
+[
+  {
+    "id": "LION_0_01",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "LION_1_01",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "LION_2L_01",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "LION_2L_02",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "LION_2L_03",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "LION_3_01",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "LION_3_02",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "LION_3_03",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "LION_3_04",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "LION_4_01",
+    "animal": "lion",
+    "animal_label": "Lion",
+    "emoji": "🦁",
+    "pattern": "4",
+    "edges": [
+      "fence",
+      "fence",
+      "fence",
+      "fence"
+    ]
+  },
+  {
+    "id": "GIRAFFE_0_01",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_0_02",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_1_01",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_1_02",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_1_03",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_2L_01",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_2L_02",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_2L_03",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_2L_04",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_2L_05",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_2I_01",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_2I_02",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "GIRAFFE_3_01",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "GIRAFFE_4_01",
+    "animal": "giraffe",
+    "animal_label": "Giraffe",
+    "emoji": "🦒",
+    "pattern": "4",
+    "edges": [
+      "fence",
+      "fence",
+      "fence",
+      "fence"
+    ]
+  },
+  {
+    "id": "FLAMINGO_0_01",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_0_02",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_0_03",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_1_01",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_1_02",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_1_03",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_1_04",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_2L_01",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_2L_02",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_2L_03",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_2L_04",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_2I_01",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_2I_02",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "FLAMINGO_3_01",
+    "animal": "flamingo",
+    "animal_label": "Flamingo",
+    "emoji": "🦩",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "ELEPHANT_0_01",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_1_01",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_1_02",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_1_03",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_2L_01",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_2L_02",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_2L_03",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_2L_04",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_2I_01",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_2I_02",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "ELEPHANT_3_01",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "ELEPHANT_4_01",
+    "animal": "elephant",
+    "animal_label": "Elephant",
+    "emoji": "🐘",
+    "pattern": "4",
+    "edges": [
+      "fence",
+      "fence",
+      "fence",
+      "fence"
+    ]
+  },
+  {
+    "id": "HIPPO_0_01",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_1_01",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_1_02",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_2L_01",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_2L_02",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_2L_03",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_2L_04",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_2I_01",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_2I_02",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_2I_03",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "HIPPO_3_01",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "HIPPO_4_01",
+    "animal": "hippo",
+    "animal_label": "Hippo",
+    "emoji": "🦛",
+    "pattern": "4",
+    "edges": [
+      "fence",
+      "fence",
+      "fence",
+      "fence"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_0_01",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_1_01",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_1_02",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_1_03",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_1_04",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_2L_01",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_2L_02",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_2L_03",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_2I_01",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_2I_02",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_2I_03",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "CHIMPANZEE_3_01",
+    "animal": "chimpanzee",
+    "animal_label": "Chimpanzee",
+    "emoji": "🐒",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "EMPTY_0_01",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "0",
+    "edges": [
+      "open",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "EMPTY_1_01",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "1",
+    "edges": [
+      "fence",
+      "open",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "EMPTY_2L_01",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "EMPTY_2L_02",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "EMPTY_2L_03",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "EMPTY_2L_04",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "EMPTY_2L_05",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "2L",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "open"
+    ]
+  },
+  {
+    "id": "EMPTY_2I_01",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "2I",
+    "edges": [
+      "fence",
+      "open",
+      "fence",
+      "open"
+    ]
+  },
+  {
+    "id": "EMPTY_3_01",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "3",
+    "edges": [
+      "fence",
+      "fence",
+      "open",
+      "fence"
+    ]
+  },
+  {
+    "id": "EMPTY_4_01",
+    "animal": null,
+    "animal_label": null,
+    "emoji": "·",
+    "pattern": "4",
+    "edges": [
+      "fence",
+      "fence",
+      "fence",
+      "fence"
+    ]
+  }
+]
