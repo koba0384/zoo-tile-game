@@ -1,10 +1,15 @@
-
 import json
 import random
 from copy import deepcopy
 from pathlib import Path
 
-DATA_PATH = Path(__file__).parent / "data" / "tiles.json"
+BASE_DIR = Path(__file__).resolve().parent
+CANDIDATE_PATHS = [
+    BASE_DIR / "data" / "tiles.json",
+    BASE_DIR / "tiles.json",
+    Path.cwd() / "data" / "tiles.json",
+    Path.cwd() / "tiles.json",
+]
 EDGE_ORDER = ["N", "E", "S", "W"]
 ANIMAL_EMOJI = {
     "lion": "🦁",
@@ -16,8 +21,20 @@ ANIMAL_EMOJI = {
     None: "·",
 }
 
+def get_data_path() -> Path:
+    for path in CANDIDATE_PATHS:
+        if path.exists():
+            return path
+    looked = "\n".join(f"- {p}" for p in CANDIDATE_PATHS)
+    raise FileNotFoundError(
+        "tiles.json が見つかりません。確認したパス:\n"
+        f"{looked}\n\n"
+        "GitHub の repo に data/tiles.json が入っているか確認してください。"
+    )
+
 def load_tiles():
-    with open(DATA_PATH, "r", encoding="utf-8") as f:
+    data_path = get_data_path()
+    with open(data_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 def build_deck(seed=None):
