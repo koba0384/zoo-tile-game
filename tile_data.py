@@ -10,7 +10,6 @@ CANDIDATE_PATHS = [
     Path.cwd() / "data" / "tiles.json",
     Path.cwd() / "tiles.json",
 ]
-EDGE_ORDER = ["N", "E", "S", "W"]
 ANIMAL_EMOJI = {
     "lion": "🦁",
     "giraffe": "🦒",
