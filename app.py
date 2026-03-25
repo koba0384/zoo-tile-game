@@ -1,6 +1,7 @@
 from textwrap import dedent
 
 import streamlit as st
+
 from tile_data import build_deck, rotate_tile, animal_to_emoji, tile_label
 from game_logic import (
     get_valid_positions,
@@ -26,118 +27,167 @@ st.set_page_config(
 PLAYER_COLORS = ["#ef4444", "#2563eb", "#16a34a", "#a855f7"]
 PLAYER_LABELS = ["赤", "青", "緑", "紫"]
 ZOOM_LEVELS = [
-    {"label": "遠", "radius": 4, "cell": 24},
-    {"label": "中", "radius": 3, "cell": 34},
-    {"label": "近", "radius": 2, "cell": 46},
+    {"label": "遠", "radius": 6, "cell": 18},
+    {"label": "中", "radius": 4, "cell": 28},
+    {"label": "近", "radius": 3, "cell": 40},
 ]
 
 APP_CSS = """
 <style>
 .block-container {
-    padding-top: 0.7rem;
-    padding-bottom: 6.3rem;
+    max-width: 560px;
+    padding-top: 0.6rem;
+    padding-bottom: 5.7rem;
     padding-left: 0.65rem;
     padding-right: 0.65rem;
-    max-width: 560px;
 }
 h1 {
-    font-size: 2.05rem !important;
-    line-height: 1.05 !important;
-    margin-bottom: 0.2rem !important;
-}
-.status-card {
-    border-radius: 14px;
-    color: white;
-    font-weight: 700;
-    text-align: center;
-    padding: 10px 12px;
-    margin-bottom: 0.45rem;
+    font-size: 2rem !important;
+    line-height: 1.04 !important;
+    margin-bottom: 0.15rem !important;
 }
 .small-note {
     color:#64748b;
-    font-size:0.84rem;
+    font-size:0.82rem;
 }
-.top-tile-card {
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
-    border-radius:14px;
-    padding:10px;
+.status-pill {
+    color:#fff;
+    font-weight:800;
+    text-align:center;
+    border-radius:16px;
+    padding:10px 12px;
     margin-bottom:0.55rem;
 }
-.board-wrap {
-    background:#ffffff;
-    border:1px solid #e5e7eb;
-    border-radius:14px;
-    padding:10px 8px 8px 8px;
-    margin-top:0.2rem;
+.surface-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border:1px solid #e2e8f0;
+    border-radius:16px;
+    padding:10px;
+    box-shadow:0 8px 22px rgba(15,23,42,0.06);
+    margin-bottom:0.55rem;
 }
-.board-row-gap {
-    margin-top: 2px;
+.board-shell {
+    background: linear-gradient(180deg, #d9f99d 0%, #bbf7d0 100%);
+    border:1px solid #86efac;
+    border-radius:18px;
+    padding:8px 6px 6px 6px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 24px rgba(22,163,74,0.10);
 }
-.candidate-slot div[data-testid="stButton"] > button {
-    min-height: 1.55rem;
-    height: 100%;
-    width: 100%;
-    background: #eff6ff;
-    border: 2px dashed #60a5fa;
-    border-radius: 10px;
-    color: transparent;
-    padding: 0;
-    box-shadow: none;
+.board-caption {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.82rem;
+    color:#166534;
+    margin:0 2px 8px 2px;
+    font-weight:600;
 }
-.candidate-slot div[data-testid="stButton"] > button:hover {
-    border-color:#2563eb;
-    background:#dbeafe;
+div[data-testid="stButton"] > button {
+    border-radius: 12px;
 }
-.candidate-slot div[data-testid="stButton"] > button:focus {
-    border-color:#2563eb;
+.board-btn div[data-testid="stButton"] > button {
+    width:100%;
+    min-height:1rem;
+    height:100%;
+    padding:0;
+    border-radius:12px;
+    border:0;
+    background:transparent;
     box-shadow:none;
 }
-.candidate-slot.selected-frame {
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.board-btn div[data-testid="stButton"] > button:hover {
+    border:0;
+    background:transparent;
 }
-.tools-row div[data-testid="stButton"] > button,
-.selection-row div[data-testid="stButton"] > button,
-.meeple-row div[data-testid="stButton"] > button {
-    min-height: 2.25rem;
-    border-radius: 10px;
-    padding: 0;
+.board-btn div[data-testid="stButton"] > button:focus {
+    border:0;
+    box-shadow:none;
 }
-.selection-row div[data-testid="stButton"] > button[kind="primary"] {
-    background:#16a34a;
-    border-color:#16a34a;
-}
-.log-card {
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
+.candidate-btn div[data-testid="stButton"] > button {
+    width:100%;
+    min-height:1rem;
+    height:100%;
+    padding:0;
     border-radius:12px;
-    padding:10px 12px;
-    margin-bottom:8px;
-    font-size:0.92rem;
+    border:2px solid #2563eb;
+    background: rgba(255,255,255,0.55);
+    box-shadow: 0 0 0 2px rgba(191,219,254,0.95), inset 0 0 0 1px rgba(255,255,255,0.7);
+    color: transparent;
+}
+.candidate-btn div[data-testid="stButton"] > button:hover {
+    background: rgba(219,234,254,0.95);
+    border-color:#1d4ed8;
+}
+.candidate-btn div[data-testid="stButton"] > button:focus {
+    border-color:#1d4ed8;
+    box-shadow: 0 0 0 2px rgba(191,219,254,0.95), inset 0 0 0 1px rgba(255,255,255,0.7);
+}
+.flat-btn div[data-testid="stButton"] > button {
+    min-height:2.3rem;
+}
+.green-btn div[data-testid="stButton"] > button {
+    min-height:2.4rem;
+    background:#16a34a;
+    color:#fff;
+    border:1px solid #16a34a;
+    font-weight:800;
+}
+.green-btn div[data-testid="stButton"] > button:hover {
+    background:#15803d;
+    border-color:#15803d;
+    color:#fff;
+}
+.red-btn div[data-testid="stButton"] > button {
+    min-height:2.4rem;
+    background:#fff1f2;
+    color:#be123c;
+    border:1px solid #fecdd3;
+    font-weight:800;
+}
+.red-btn div[data-testid="stButton"] > button:hover {
+    background:#ffe4e6;
 }
 .selection-bar {
     position: sticky;
     bottom: 0;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px);
-    border-top: 1px solid #e5e7eb;
-    padding-top: 0.55rem;
-    margin-top: 0.55rem;
     z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-top:1px solid #e2e8f0;
+    padding-top:0.5rem;
+    margin-top:0.4rem;
 }
-.selection-card {
-    border:1px solid #dbeafe;
+.selection-note {
     background:#eff6ff;
     color:#1e3a8a;
+    border:1px solid #bfdbfe;
     border-radius:14px;
     padding:10px 12px;
-    margin-bottom: 8px;
-    font-size:0.94rem;
+    margin-bottom:8px;
+    font-size:0.92rem;
+    font-weight:600;
 }
-.score-mini td, .score-mini th {
-    padding: 0.2rem 0.3rem !important;
+.score-chip {
+    display:inline-block;
+    border-radius:999px;
+    padding:3px 8px;
+    margin-right:6px;
+    font-size:0.8rem;
+    color:#fff;
+    font-weight:700;
+}
+.log-card {
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:9px 10px;
+    margin-bottom:8px;
+    font-size:0.9rem;
+}
+hr.compact {
+    margin: 0.45rem 0 0.45rem 0;
+    border:0;
+    border-top:1px solid #e2e8f0;
 }
 </style>
 """
@@ -147,87 +197,101 @@ def next_player(idx, num_players):
     return (idx + 1) % num_players
 
 
-
 def coord_to_text(coord):
     return f"({coord[0]}, {coord[1]})"
-
 
 
 def current_zoom_cfg():
     return ZOOM_LEVELS[st.session_state.get("zoom_level", 1)]
 
 
+def board_center_from_cells(cells):
+    if not cells:
+        return (0, 0)
+    xs = [c[0] for c in cells]
+    ys = [c[1] for c in cells]
+    return (round(sum(xs) / len(xs)), round(sum(ys) / len(ys)))
 
-def render_tile_html(tile, meeple=None, size=60, selected=False, preview=False, show_rotate_hint=False):
+
+def render_tile_html(tile, meeple=None, size=60, selected=False, preview=False, rotate_hint=False):
     edges = tile["edges"]
 
     def border(edge):
-        return "4px solid #111827" if edge == "fence" else "1.5px dashed #d1d5db"
+        if edge == "fence":
+            return f"{max(3, int(size*0.10))}px solid #7c3f00"
+        return f"{max(1, int(size*0.05))}px dashed rgba(120,113,108,0.35)"
 
     emoji = animal_to_emoji(tile.get("animal"))
-    bg = "#ecfeff" if preview else "#ffffff"
+    grass = "#ecfccb" if preview else "#fefce8"
     outline = (
-        "box-shadow:0 0 0 3px #22c55e, 0 4px 10px rgba(0,0,0,0.12);"
+        "box-shadow:0 0 0 3px #22c55e, 0 10px 20px rgba(0,0,0,0.14);"
         if selected
-        else "box-shadow:0 1px 3px rgba(0,0,0,0.08);"
+        else "box-shadow:0 4px 10px rgba(0,0,0,0.10);"
     )
-    meeple_html = ""
+    inner_size = max(12, int(size * 0.40))
+    badge = ""
     if meeple is not None:
         color = PLAYER_COLORS[meeple]
-        label = PLAYER_LABELS[meeple]
-        meeple_html = f"""
-        <div style='position:absolute; top:2px; right:3px; font-size:10px; background:{color};
-             color:white; padding:1px 5px; border-radius:999px; line-height:1.2; font-weight:700;'>
-             {label}
-        </div>
-        """
-
+        badge = (
+            f"<div style='position:absolute; top:2px; right:2px; min-width:{max(14, int(size*0.28))}px; "
+            f"height:{max(14, int(size*0.28))}px; background:{color}; border:1px solid rgba(255,255,255,0.9); "
+            f"border-radius:999px; color:#fff; font-size:{max(8, int(size*0.16))}px; display:flex; "
+            f"align-items:center; justify-content:center; font-weight:800;'>{PLAYER_LABELS[meeple]}</div>"
+        )
     rotate_html = ""
-    if show_rotate_hint:
-        icon_size = max(15, int(size * 0.28))
-        rotate_html = f"""
-        <div style='position:absolute; right:3px; bottom:3px; width:{icon_size}px; height:{icon_size}px;
-             border-radius:999px; background:rgba(255,255,255,0.92); border:1px solid #d1d5db;
-             display:flex; align-items:center; justify-content:center; font-size:{max(10, int(size * 0.2))}px;'>↻</div>
-        """
+    if rotate_hint:
+        rotate_html = (
+            f"<div style='position:absolute; left:2px; bottom:2px; width:{max(14, int(size*0.26))}px; "
+            f"height:{max(14, int(size*0.26))}px; background:rgba(255,255,255,0.92); border:1px solid #d1d5db; "
+            f"border-radius:999px; font-size:{max(8, int(size*0.16))}px; display:flex; align-items:center; justify-content:center;'>↻</div>"
+        )
 
     return dedent(
         f"""
         <div style="
             width:{size}px;
             height:{size}px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            position:relative;
-            font-size:{max(18, int(size*0.48))}px;
-            background:{bg};
             border-top:{border(edges[0])};
             border-right:{border(edges[1])};
             border-bottom:{border(edges[2])};
             border-left:{border(edges[3])};
-            border-radius:10px;
+            border-radius:{max(8, int(size*0.18))}px;
+            background:linear-gradient(180deg, {grass} 0%, #dcfce7 100%);
+            position:relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
             margin:auto;
             {outline}
+            overflow:hidden;
         ">
-            <div style="font-size:{max(18, int(size*0.48))}px; line-height:1;">{emoji}</div>
-            {meeple_html}
+            <div style="position:absolute; inset:0; background:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.32), transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(134,239,172,0.25), transparent 28%);"></div>
+            <div style="font-size:{inner_size}px; line-height:1; position:relative; z-index:1;">{emoji}</div>
+            {badge}
             {rotate_html}
         </div>
         """
     ).strip()
 
 
-
-def render_empty_slot_html(size=42, active=False):
-    border = "2px dashed #60a5fa" if active else "1px dashed #e5e7eb"
-    bg = "#eff6ff" if active else "transparent"
-    return dedent(
-        f"""
-        <div style='width:{size}px; height:{size}px; border:{border}; border-radius:10px; background:{bg}; margin:auto;'></div>
-        """
-    ).strip()
-
+def render_blank_cell_html(size=28, candidate=False):
+    if candidate:
+        return dedent(
+            f"""
+            <div style="
+                width:{size}px;
+                height:{size}px;
+                border:2px solid #2563eb;
+                border-radius:{max(8, int(size*0.22))}px;
+                background:rgba(255,255,255,0.58);
+                box-shadow:0 0 0 2px rgba(191,219,254,0.95), inset 0 0 0 1px rgba(255,255,255,0.6);
+                margin:auto;
+            "></div>
+            """
+        ).strip()
+    return f"<div style='width:{size}px;height:{size}px;margin:auto;'></div>"
 
 
 def available_rotations(board, tile):
@@ -240,14 +304,12 @@ def available_rotations(board, tile):
     return valid
 
 
-
 def valid_rotations_by_coord(board, tile):
     by_coord = {}
     for rotation, positions in available_rotations(board, tile).items():
         for coord in positions:
             by_coord.setdefault(coord, []).append(rotation)
-    return {coord: sorted(set(rotations)) for coord, rotations in by_coord.items()}
-
+    return {coord: sorted(set(v)) for coord, v in by_coord.items()}
 
 
 def score_completed_region(region):
@@ -255,9 +317,7 @@ def score_completed_region(region):
     animals = region_animals(board, region)
     meeple_counts, _ = region_meeples(board, region)
     enclosed_cells = enclosed_cells_by_region(board, region)
-    nested_bonus, _ = compute_nested_bonus(
-        st.session_state.completed_regions, enclosed_cells, region
-    )
+    nested_bonus, _ = compute_nested_bonus(st.session_state.completed_regions, enclosed_cells, region)
     total_points, breakdown = score_region(
         animals=animals,
         region_size=len(region),
@@ -283,19 +343,13 @@ def score_completed_region(region):
     )
 
     winner_text = "、".join([f"{PLAYER_LABELS[p]}プレイヤー" for p in winners]) if winners else "該当なし"
-    nested_text = f" / 内包ボーナス {nested_bonus}点" if nested_bonus else ""
+    nested_text = f" / 内包 {nested_bonus}点" if nested_bonus else ""
     st.session_state.last_scoring = {
         "title": "囲い完成",
-        "animals": animals,
-        "meeples": meeple_counts,
         "breakdown": breakdown,
         "winners": winners,
     }
-    st.session_state.log.insert(
-        0,
-        f"囲い完成: {winner_text} が {total_points}点獲得（{len(region)}タイル{nested_text}）",
-    )
-
+    st.session_state.log.insert(0, f"囲い完成: {winner_text} が {total_points}点獲得（{len(region)}タイル{nested_text}）")
 
 
 def score_endgame_regions():
@@ -312,40 +366,16 @@ def score_endgame_regions():
         if not meeple_counts:
             continue
         animals = region_animals(board, region)
-        points, _ = score_region(
-            animals=animals,
-            region_size=len(region),
-            nested_bonus=0,
-            completed=False,
-        )
+        points, _ = score_region(animals=animals, region_size=len(region), nested_bonus=0, completed=False)
         top = max(meeple_counts.values())
         winners = [p for p, count in meeple_counts.items() if count == top]
         for player in winners:
             st.session_state.scores[player] += points
         remove_region_meeples(board, region)
-        st.session_state.log.insert(
-            0,
-            f"終了時得点: {'、'.join(PLAYER_LABELS[p] for p in winners)} が {points}点獲得（未完成囲い）",
-        )
+        st.session_state.log.insert(0, f"終了時得点: {'、'.join(PLAYER_LABELS[p] for p in winners)} が {points}点獲得")
 
     st.session_state.final_scored = True
-    st.session_state.last_scoring = {
-        "title": "終了時得点",
-        "animals": [],
-        "meeples": {},
-        "breakdown": None,
-        "winners": [],
-    }
-
-
-
-def board_center_from_cells(cells):
-    if not cells:
-        return (0, 0)
-    xs = [c[0] for c in cells]
-    ys = [c[1] for c in cells]
-    return (round(sum(xs) / len(xs)), round(sum(ys) / len(ys)))
-
+    st.session_state.last_scoring = {"title": "終了時得点", "breakdown": None, "winners": []}
 
 
 def reset_selection():
@@ -354,12 +384,11 @@ def reset_selection():
     st.session_state.selection_place_meeple = False
 
 
-
 def current_valid_map():
-    if st.session_state.current_tile is None:
+    tile = st.session_state.get("current_tile")
+    if tile is None:
         return {}
-    return valid_rotations_by_coord(st.session_state.board, st.session_state.current_tile)
-
+    return valid_rotations_by_coord(st.session_state.board, tile)
 
 
 def sync_view_center(preferred=None):
@@ -367,10 +396,9 @@ def sync_view_center(preferred=None):
         st.session_state.view_center = preferred
         return
     cells = set(st.session_state.board.keys())
-    if st.session_state.current_tile is not None:
+    if st.session_state.get("current_tile") is not None:
         cells |= set(current_valid_map().keys())
     st.session_state.view_center = board_center_from_cells(cells)
-
 
 
 def start_game(num_players):
@@ -378,7 +406,6 @@ def start_game(num_players):
     board = {}
     starter = starter_tile_from_deck(deck)
     board[(0, 0)] = {"tile": starter, "meeple": None}
-
     st.session_state.board = board
     st.session_state.deck = deck
     st.session_state.num_players = num_players
@@ -396,13 +423,8 @@ def start_game(num_players):
     draw_next_tile_for_turn()
 
 
-
 def draw_next_tile_for_turn():
-    current, recycled = draw_next_placeable_tile(
-        st.session_state.board,
-        st.session_state.deck,
-        rotate_tile,
-    )
+    current, recycled = draw_next_placeable_tile(st.session_state.board, st.session_state.deck, rotate_tile)
     if recycled:
         st.session_state.log.insert(0, f"置けないタイルを山札の下へ: {len(recycled)}枚")
     if current is None:
@@ -417,21 +439,18 @@ def draw_next_tile_for_turn():
     sync_view_center()
 
 
-
 def ensure_game():
     if "board" not in st.session_state:
         start_game(2)
-    if "selected_coord" not in st.session_state:
-        st.session_state.selected_coord = None
-    if "selected_rotation" not in st.session_state:
-        st.session_state.selected_rotation = None
-    if "selection_place_meeple" not in st.session_state:
-        st.session_state.selection_place_meeple = False
-    if "zoom_level" not in st.session_state:
-        st.session_state.zoom_level = 1
-    if "view_center" not in st.session_state:
-        st.session_state.view_center = (0, 0)
-
+    for key, default in [
+        ("selected_coord", None),
+        ("selected_rotation", None),
+        ("selection_place_meeple", False),
+        ("zoom_level", 1),
+        ("view_center", (0, 0)),
+    ]:
+        if key not in st.session_state:
+            st.session_state[key] = default
 
 
 def select_position(coord):
@@ -439,11 +458,10 @@ def select_position(coord):
     if not rotations:
         return
     st.session_state.selected_coord = coord
-    current = st.session_state.get("selected_rotation")
-    st.session_state.selected_rotation = current if current in rotations else rotations[0]
+    cur = st.session_state.get("selected_rotation")
+    st.session_state.selected_rotation = cur if cur in rotations else rotations[0]
     st.session_state.selection_place_meeple = False
     st.session_state.view_center = coord
-
 
 
 def rotate_selected_position():
@@ -461,14 +479,12 @@ def rotate_selected_position():
     st.session_state.selected_rotation = rotations[(idx + 1) % len(rotations)]
 
 
-
 def current_selected_tile():
     tile = st.session_state.get("current_tile")
     rotation = st.session_state.get("selected_rotation")
     if tile is None or rotation is None:
         return None
     return rotate_tile(tile, rotation)
-
 
 
 def current_selected_meeple_allowed():
@@ -483,7 +499,6 @@ def current_selected_meeple_allowed():
     return len(counts) == 0
 
 
-
 def score_table_data():
     return {
         "プレイヤー": [f"{PLAYER_LABELS[i]}プレイヤー" for i in range(st.session_state.num_players)],
@@ -491,67 +506,42 @@ def score_table_data():
     }
 
 
-
-def render_scoring_panel():
-    last = st.session_state.last_scoring
-    if not last:
-        st.info("まだ得点イベントはありません。")
-        return
-    with st.expander(f"直近の得点: {last['title']}", expanded=False):
-        breakdown = last.get("breakdown")
-        if not breakdown:
-            st.write("終了時の未完成囲いを精算しました。")
-            return
-        rows = []
-        for item in breakdown["animal_details"]:
-            rows.append((item["label"], item["score"], item["note"]))
-        for item in breakdown["combo_details"]:
-            rows.append((item["label"], item["score"], item["note"]))
-        if breakdown["completion_bonus"]:
-            rows.append(("完成ボーナス", breakdown["completion_bonus"], "囲いのタイル数"))
-        if breakdown["nested_bonus"]:
-            rows.append(("内包ボーナス", breakdown["nested_bonus"], "完成済みの内側の囲い"))
-        st.table({
-            "項目": [r[0] for r in rows],
-            "点": [r[1] for r in rows],
-            "メモ": [r[2] for r in rows],
-        })
-        st.metric("合計", breakdown["total"])
-
-
-
 def render_header():
     st.markdown(APP_CSS, unsafe_allow_html=True)
     st.title("🦁 どうぶつえんタイルゲーム試作版")
-    st.caption("置ける場所だけ枠が出ます。枠をタップ → 必要なら回転 → ✔︎で確定。")
+    st.caption("置ける場所だけ青い枠が出ます。枠をタップ → ↻で回転 → ✔で確定。")
     if st.session_state.game_over:
         st.error("ゲーム終了")
     else:
-        player = st.session_state.current_player
+        p = st.session_state.current_player
         st.markdown(
-            f"<div class='status-card' style='background:{PLAYER_COLORS[player]};'>{PLAYER_LABELS[player]}プレイヤーの番</div>",
+            f"<div class='status-pill' style='background:{PLAYER_COLORS[p]};'>{PLAYER_LABELS[p]}プレイヤーの番</div>",
             unsafe_allow_html=True,
         )
-    a, b, c = st.columns(3)
-    a.markdown(f"**山札** {len(st.session_state.deck)}")
-    b.markdown(f"**人数** {st.session_state.num_players}")
-    c.markdown(f"**ズーム** {current_zoom_cfg()['label']}")
 
+    top = st.columns([1, 1, 1], gap="small")
+    top[0].markdown(f"**山札** {len(st.session_state.deck)}")
+    top[1].markdown(f"**人数** {st.session_state.num_players}")
+    top[2].markdown(f"**ズーム** {current_zoom_cfg()['label']}")
 
 
 def render_current_tile_panel():
-    tile = current_selected_tile() if st.session_state.get("selected_coord") is not None else rotate_tile(st.session_state.current_tile, 0)
+    current_tile = st.session_state.get("current_tile")
+    if current_tile is None:
+        return
+    selected = st.session_state.get("selected_coord") is not None
+    tile = current_selected_tile() if selected else rotate_tile(current_tile, 0)
     valid_count = len(current_valid_map())
-    st.markdown("<div class='top-tile-card'>", unsafe_allow_html=True)
-    left, right = st.columns([1, 1.5], gap="small")
+    st.markdown("<div class='surface-card'>", unsafe_allow_html=True)
+    left, right = st.columns([1, 1.6], gap="small")
     with left:
         st.markdown(
             render_tile_html(
                 tile,
-                size=90,
-                selected=st.session_state.get("selected_coord") is not None,
-                preview=st.session_state.get("selected_coord") is not None,
-                show_rotate_hint=st.session_state.get("selected_coord") is not None and len(current_valid_map().get(st.session_state.get("selected_coord"), [])) > 1,
+                size=88,
+                selected=selected,
+                preview=selected,
+                rotate_hint=selected and len(current_valid_map().get(st.session_state.get("selected_coord"), [])) > 1,
             ),
             unsafe_allow_html=True,
         )
@@ -560,54 +550,76 @@ def render_current_tile_panel():
         st.markdown(f"<div class='small-note'>候補 {valid_count}か所</div>", unsafe_allow_html=True)
         coord = st.session_state.get("selected_coord")
         if coord is None:
-            st.markdown("<div class='small-note'>青い枠をタップしてください</div>", unsafe_allow_html=True)
+            st.markdown("<div class='small-note'>まず盤面の青い枠をタップ</div>", unsafe_allow_html=True)
         else:
-            st.markdown(
-                f"<div class='small-note'>選択中 {coord_to_text(coord)} / 向き {st.session_state.selected_rotation * 90}°</div>",
-                unsafe_allow_html=True,
-            )
+            rot = st.session_state.get("selected_rotation", 0) * 90
+            st.markdown(f"<div class='small-note'>選択中 {coord_to_text(coord)} / {rot}°</div>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
+
+def shift_view(dx=0, dy=0):
+    x, y = st.session_state.get("view_center", (0, 0))
+    st.session_state.view_center = (x + dx, y + dy)
 
 
 def render_board_tools():
+    st.markdown("<div class='surface-card'>", unsafe_allow_html=True)
     st.markdown("**盤面**")
-    st.markdown("<div class='small-note'>スクロールなしで見やすいように、ズームと移動で盤面を切り替えます。</div>", unsafe_allow_html=True)
-    st.markdown("<div class='tools-row'>", unsafe_allow_html=True)
-    r1 = st.columns(5, gap="small")
-    if r1[0].button("−", use_container_width=True, disabled=st.session_state.zoom_level == 0):
-        st.session_state.zoom_level -= 1
-        st.rerun()
-    if r1[1].button("＋", use_container_width=True, disabled=st.session_state.zoom_level == len(ZOOM_LEVELS) - 1):
-        st.session_state.zoom_level += 1
-        st.rerun()
-    if r1[2].button("←", use_container_width=True):
-        x, y = st.session_state.view_center
-        st.session_state.view_center = (x - 1, y)
-        st.rerun()
-    if r1[3].button("◎", use_container_width=True):
-        sync_view_center(preferred=st.session_state.get("selected_coord"))
-        st.rerun()
-    if r1[4].button("→", use_container_width=True):
-        x, y = st.session_state.view_center
-        st.session_state.view_center = (x + 1, y)
-        st.rerun()
-    r2 = st.columns(3, gap="small")
-    if r2[0].button("↑", use_container_width=True):
-        x, y = st.session_state.view_center
-        st.session_state.view_center = (x, y - 1)
-        st.rerun()
-    r2[1].markdown(f"<div class='small-note' style='text-align:center; padding-top:0.35rem;'>中心 {coord_to_text(st.session_state.view_center)}</div>", unsafe_allow_html=True)
-    if r2[2].button("↓", use_container_width=True):
-        x, y = st.session_state.view_center
-        st.session_state.view_center = (x, y + 1)
-        st.rerun()
+    st.markdown("<div class='small-note'>青い枠だけ置けます。青い枠が出ない空白は置けません。</div>", unsafe_allow_html=True)
+    z = current_zoom_cfg()
+    t1 = st.columns(5, gap="small")
+    with t1[0]:
+        if st.button("遠", use_container_width=True, type="primary" if z["label"] == "遠" else "secondary"):
+            st.session_state.zoom_level = 0
+            st.rerun()
+    with t1[1]:
+        if st.button("中", use_container_width=True, type="primary" if z["label"] == "中" else "secondary"):
+            st.session_state.zoom_level = 1
+            st.rerun()
+    with t1[2]:
+        if st.button("近", use_container_width=True, type="primary" if z["label"] == "近" else "secondary"):
+            st.session_state.zoom_level = 2
+            st.rerun()
+    with t1[3]:
+        if st.button("◎", use_container_width=True):
+            sync_view_center(preferred=st.session_state.get("selected_coord"))
+            st.rerun()
+    with t1[4]:
+        if st.button("新規", use_container_width=True):
+            start_game(st.session_state.num_players)
+            st.rerun()
+
+    t2 = st.columns(3, gap="small")
+    with t2[0]:
+        if st.button("←", use_container_width=True):
+            shift_view(dx=-2)
+            st.rerun()
+    with t2[1]:
+        st.markdown(
+            f"<div class='small-note' style='text-align:center;padding-top:0.45rem;'>中心 {coord_to_text(st.session_state.view_center)}</div>",
+            unsafe_allow_html=True,
+        )
+    with t2[2]:
+        if st.button("→", use_container_width=True):
+            shift_view(dx=2)
+            st.rerun()
+
+    t3 = st.columns(3, gap="small")
+    with t3[0]:
+        if st.button("↑", use_container_width=True):
+            shift_view(dy=-2)
+            st.rerun()
+    with t3[1]:
+        st.markdown("<div class='small-note' style='text-align:center;padding-top:0.45rem;'>ズームで俯瞰できます</div>", unsafe_allow_html=True)
+    with t3[2]:
+        if st.button("↓", use_container_width=True):
+            shift_view(dy=2)
+            st.rerun()
     st.markdown("</div>", unsafe_allow_html=True)
 
 
-
 def visible_coords_and_valid_map():
-    valid_map = current_valid_map() if st.session_state.current_tile is not None else {}
+    valid_map = current_valid_map() if st.session_state.get("current_tile") is not None else {}
     center_x, center_y = st.session_state.get("view_center", (0, 0))
     cfg = current_zoom_cfg()
     radius = cfg["radius"]
@@ -616,14 +628,17 @@ def visible_coords_and_valid_map():
     return xs, ys, valid_map
 
 
-
 def render_board_section():
     render_board_tools()
     xs, ys, valid_map = visible_coords_and_valid_map()
     valid_coords = set(valid_map.keys())
     size = current_zoom_cfg()["cell"]
 
-    st.markdown("<div class='board-wrap'>", unsafe_allow_html=True)
+    st.markdown("<div class='board-shell'>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='board-caption'><span>見えている範囲 {len(xs)}×{len(ys)}</span><span>置ける場所 {len(valid_coords)}</span></div>",
+        unsafe_allow_html=True,
+    )
     for y in ys:
         cols = st.columns(len(xs), gap="small")
         for idx, x in enumerate(xs):
@@ -634,36 +649,23 @@ def render_board_section():
                     st.markdown(render_tile_html(cell["tile"], cell.get("meeple"), size=size), unsafe_allow_html=True)
                 elif coord == st.session_state.get("selected_coord"):
                     tile = current_selected_tile()
-                    rotations = valid_map.get(coord, [])
+                    rots = valid_map.get(coord, [])
                     if tile is not None:
                         st.markdown(
-                            render_tile_html(
-                                tile,
-                                size=size,
-                                selected=True,
-                                preview=True,
-                                show_rotate_hint=len(rotations) > 1,
-                            ),
+                            render_tile_html(tile, size=size, selected=True, preview=True, rotate_hint=len(rots) > 1),
                             unsafe_allow_html=True,
                         )
                     else:
-                        st.markdown(render_empty_slot_html(size=size, active=True), unsafe_allow_html=True)
+                        st.markdown(render_blank_cell_html(size=size, candidate=True), unsafe_allow_html=True)
                 elif coord in valid_coords:
-                    st.markdown("<div class='candidate-slot'>", unsafe_allow_html=True)
+                    st.markdown("<div class='candidate-btn board-btn'>", unsafe_allow_html=True)
                     if st.button(" ", key=f"cand_{x}_{y}", use_container_width=True):
                         select_position(coord)
                         st.rerun()
                     st.markdown("</div>", unsafe_allow_html=True)
                 else:
-                    st.markdown(render_empty_slot_html(size=size, active=False), unsafe_allow_html=True)
-        st.markdown("<div class='board-row-gap'></div>", unsafe_allow_html=True)
+                    st.markdown(render_blank_cell_html(size=size, candidate=False), unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
-
-
-
-def toggle_meeple_choice(value: bool):
-    st.session_state.selection_place_meeple = value
-
 
 
 def confirm_current_move():
@@ -679,73 +681,94 @@ def confirm_current_move():
         player_idx=st.session_state.current_player,
         place_meeple=bool(st.session_state.get("selection_place_meeple", False)),
     )
-
     log_line = f"{PLAYER_LABELS[st.session_state.current_player]}が {coord_to_text(coord)} に {tile_label(tile)} を配置"
     if info["meeple_placed"]:
         log_line += " / ミープル配置"
     st.session_state.log.insert(0, log_line)
-
     region = info["region"]
     if region_is_complete(st.session_state.board, region):
         score_completed_region(region)
-
-    st.session_state.current_player = next_player(
-        st.session_state.current_player,
-        st.session_state.num_players,
-    )
+    st.session_state.current_player = next_player(st.session_state.current_player, st.session_state.num_players)
     st.session_state.view_center = coord
     draw_next_tile_for_turn()
 
 
-
 def render_selection_bar():
-    if st.session_state.current_tile is None:
+    if st.session_state.get("current_tile") is None:
         return
-
     coord = st.session_state.get("selected_coord")
     st.markdown("<div class='selection-bar'>", unsafe_allow_html=True)
     if coord is None:
-        st.markdown(
-            "<div class='selection-card'>青い枠だけ置けます。置きたい場所の枠をタップしてください。</div>",
-            unsafe_allow_html=True,
-        )
+        st.markdown("<div class='selection-note'>青い枠だけタップできます。まず置く場所を選んでください。</div>", unsafe_allow_html=True)
     else:
         rotations = current_valid_map().get(coord, [])
-        rotate_note = " / ↻で回転可" if len(rotations) > 1 else " / 向き固定"
+        note = "回転あり" if len(rotations) > 1 else "回転なし"
         st.markdown(
-            f"<div class='selection-card'>選択中: {coord_to_text(coord)} / 向き {st.session_state.selected_rotation * 90}°{rotate_note}</div>",
+            f"<div class='selection-note'>選択中 {coord_to_text(coord)} / 向き {st.session_state.selected_rotation * 90}° / {note}</div>",
             unsafe_allow_html=True,
         )
         allowed = current_selected_meeple_allowed()
-        st.markdown("<div class='meeple-row'>", unsafe_allow_html=True)
-        m1, m2 = st.columns(2, gap="small")
-        on = bool(st.session_state.get("selection_place_meeple", False))
-        if m1.button("ミープルなし", use_container_width=True, type="secondary" if on else "primary"):
-            toggle_meeple_choice(False)
-            st.rerun()
-        if m2.button("ミープル置く", use_container_width=True, disabled=not allowed, type="primary" if on else "secondary"):
-            toggle_meeple_choice(True)
+        mcols = st.columns(2, gap="small")
+        with mcols[0]:
+            if st.button("ミープルなし", use_container_width=True, type="primary" if not st.session_state.get("selection_place_meeple", False) else "secondary"):
+                st.session_state.selection_place_meeple = False
+                st.rerun()
+        with mcols[1]:
+            if st.button("ミープル置く", use_container_width=True, disabled=not allowed, type="primary" if st.session_state.get("selection_place_meeple", False) else "secondary"):
+                st.session_state.selection_place_meeple = True
+                st.rerun()
+    a, b, c = st.columns([1, 1, 1.3], gap="small")
+    with a:
+        st.markdown("<div class='red-btn flat-btn'>", unsafe_allow_html=True)
+        if st.button("✖ やり直し", use_container_width=True, disabled=coord is None):
+            reset_selection()
             st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
-
-    st.markdown("<div class='selection-row'>", unsafe_allow_html=True)
-    row = st.columns(3, gap="small")
-    if row[0].button("✖", use_container_width=True, disabled=coord is None):
-        reset_selection()
-        st.rerun()
-    if row[1].button("↻", use_container_width=True, disabled=coord is None or len(current_valid_map().get(coord, [])) <= 1):
-        rotate_selected_position()
-        st.rerun()
-    if row[2].button("✔︎", use_container_width=True, type="primary", disabled=coord is None):
-        confirm_current_move()
-        st.rerun()
+    with b:
+        st.markdown("<div class='flat-btn'>", unsafe_allow_html=True)
+        if st.button("↻ 回転", use_container_width=True, disabled=coord is None or len(current_valid_map().get(coord, [])) <= 1):
+            rotate_selected_position()
+            st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
+    with c:
+        st.markdown("<div class='green-btn flat-btn'>", unsafe_allow_html=True)
+        if st.button("✔ 配置", use_container_width=True, disabled=coord is None):
+            confirm_current_move()
+            st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
 
+
+def render_scoring_panel():
+    last = st.session_state.get("last_scoring")
+    if not last:
+        st.info("まだ得点イベントはありません。")
+        return
+    breakdown = last.get("breakdown")
+    if not breakdown:
+        st.write("終了時の未完成囲いを精算しました。")
+        return
+    rows = []
+    for item in breakdown["animal_details"]:
+        rows.append((item["label"], item["score"], item["note"]))
+    for item in breakdown["combo_details"]:
+        rows.append((item["label"], item["score"], item["note"]))
+    if breakdown["completion_bonus"]:
+        rows.append(("完成ボーナス", breakdown["completion_bonus"], "囲いのタイル数"))
+    if breakdown["nested_bonus"]:
+        rows.append(("内包ボーナス", breakdown["nested_bonus"], "内側の完成囲い"))
+    st.table({"項目": [r[0] for r in rows], "点": [r[1] for r in rows], "メモ": [r[2] for r in rows]})
+    st.metric("合計", breakdown["total"])
 
 
 def render_bottom_panels():
-    with st.expander("スコア", expanded=False):
+    st.markdown("<div class='surface-card'>", unsafe_allow_html=True)
+    chips = " ".join(
+        [f"<span class='score-chip' style='background:{PLAYER_COLORS[i]};'>{PLAYER_LABELS[i]} {st.session_state.scores[i]}点</span>" for i in range(st.session_state.num_players)]
+    )
+    st.markdown(f"<div>{chips}</div>", unsafe_allow_html=True)
+    st.markdown("<hr class='compact'>", unsafe_allow_html=True)
+    with st.expander("得点の詳細", expanded=False):
         st.table(score_table_data())
         render_scoring_panel()
     with st.expander("ログ", expanded=False):
@@ -757,36 +780,24 @@ def render_bottom_panels():
     with st.expander("ルールと操作", expanded=False):
         st.markdown(
             """
-- 置ける場所だけ青い枠で表示されます
-- 枠をタップすると、その場所で置ける向きに自動で切り替わります
-- ↻ は、その場所で置ける向きだけ順番に回ります
-- ✔︎ で確定、✖ でやり直しです
-- ミープルは置けるときだけ ON にできます
-- 囲い完成時は多数決、同点トップは全員得点です
+- 置ける場所だけ**青い枠**が出ます
+- 青い枠が出ない空白には置けません
+- 枠をタップすると、その場所で置ける向きの1つが選ばれます
+- **↻ 回転**で、その場所で置ける向きだけ順番に回ります
+- **✔ 配置**で確定、**✖ やり直し**で場所選びから戻ります
+- 囲い完成時は多数決で得点、同数トップは全員得点です
             """
         )
-        default_players = st.session_state.get("num_players", 2)
-        num_players = st.selectbox("プレイヤー人数", [2, 3, 4], index=max(0, default_players - 2))
-        if st.button("新しいゲーム", use_container_width=True):
-            start_game(num_players)
-            st.rerun()
-
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 def main():
     ensure_game()
     render_header()
-    if st.session_state.current_tile is not None:
-        render_current_tile_panel()
-    else:
-        st.info("これ以上置けるタイルがありません。終了時得点を反映済みです。")
+    render_current_tile_panel()
     render_board_section()
     render_selection_bar()
     render_bottom_panels()
-    if st.session_state.game_over:
-        max_score = max(st.session_state.scores)
-        winners = [PLAYER_LABELS[i] for i, score in enumerate(st.session_state.scores) if score == max_score]
-        st.success(f"勝者: {' / '.join(winners)}（{max_score}点）")
 
 
 if __name__ == "__main__":
